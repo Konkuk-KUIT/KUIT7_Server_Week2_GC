@@ -22,7 +22,7 @@ JVM의 두 가지 대표적인 Garbage Collector인
 
 ### 2-1. 요구사항
 
-1. **파일 분리** — `ParallelGCTest.java` / `G1GCTest.java` 로 구분하여 작성
+1. **파일 분리** — `test.ParallelGCTest.java` / `test.G1GCTest.java` 로 구분하여 작성
 2. **최소 클래스 수** — 객체 생성에 사용되는 데이터 클래스 1개 이상 정의
 3. **객체 생성 조건**
     - 크기가 큰 객체 (Large Object): 1MB 이상의 `byte[]` 또는 String 포함 객체
@@ -36,7 +36,7 @@ JVM의 두 가지 대표적인 Garbage Collector인
 참고용 코드 예시이지만 직접 시나리오를 추가하고 변형하시면 될 것 같습니다
 
 ```java
-public class ParallelGCTest {
+public class test.ParallelGCTest {
     static List<byte[]> longLived = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
@@ -54,7 +54,7 @@ public class ParallelGCTest {
 }
 ```
 
-> `User`, `Order`, `Product` 같은 도메인 객체를 직접 정의하고 현실적인 시나리오로 확장해보는 게 좋은 방법일 것 같습니다!
+> `obj.User`, `obj.Order`, `obj.Product` 같은 도메인 객체를 직접 정의하고 현실적인 시나리오로 확장해보는 게 좋은 방법일 것 같습니다!
 > 
 
 ---
@@ -66,25 +66,25 @@ public class ParallelGCTest {
 ### 3-1. Parallel GC 실행
 
 ```bash
-javac ParallelGCTest.java
+javac test.ParallelGCTest.java
 
 java -Xms256m -Xmx512m \
      -XX:+UseParallelGC \
      -XX:ParallelGCThreads=4 \
      -Xlog:gc*:file=gc_parallel.log:time,uptime,level,tags \
-     ParallelGCTest
+     test.ParallelGCTest
 ```
 
 ### 3-2. G1 GC 실행
 
 ```bash
-javac G1GCTest.java
+javac test.G1GCTest.java
 
 java -Xms256m -Xmx512m \
      -XX:+UseG1GC \
      -XX:MaxGCPauseMillis=200 \
      -Xlog:gc*:file=gc_g1.log:time,uptime,level,tags \
-     G1GCTest
+     test.G1GCTest
 ```
 
 Java 11 미만 환경에서는 `-Xlog` 대신 `-verbose:gc -Xloggc:gc.log` 옵션을 사용
