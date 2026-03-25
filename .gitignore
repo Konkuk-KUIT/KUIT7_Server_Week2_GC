@@ -1,0 +1,12 @@
+# 컴파일된 파일
+*.class
+
+# GC 로그
+*.log
+*.log.0
+
+# IntelliJ 설정
+.idea/
+
+# 빌드 결과물
+out/
