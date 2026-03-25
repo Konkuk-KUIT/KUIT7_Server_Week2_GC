@@ -10,8 +10,6 @@
 *.war
 out/
 
-# GC 로그 파일
-logs/
 
 # 분석 문서
 GC_ANALYSIS.md
