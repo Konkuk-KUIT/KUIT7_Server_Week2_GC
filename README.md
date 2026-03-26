@@ -71,7 +71,7 @@ javac ParallelGCTest.java
 java -Xms256m -Xmx512m \
      -XX:+UseParallelGC \
      -XX:ParallelGCThreads=4 \
-     -Xlog:gc*:file=gc_parallel.log:time,uptime,level,tags \
+     -Xlog:gc*:file=before_p.log:time,uptime,level,tags \
      ParallelGCTest
 ```
 
@@ -83,7 +83,7 @@ javac G1GCTest.java
 java -Xms256m -Xmx512m \
      -XX:+UseG1GC \
      -XX:MaxGCPauseMillis=200 \
-     -Xlog:gc*:file=gc_g1.log:time,uptime,level,tags \
+     -Xlog:gc*:file=before_g1.log:time,uptime,level,tags \
      G1GCTest
 ```
 
