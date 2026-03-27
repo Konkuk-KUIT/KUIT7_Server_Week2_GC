@@ -1,0 +1,12 @@
+gc_parallel-default
+java -Xms256m -Xmx512m      -XX:+UseParallelGC      -XX:ParallelGCThreads=4      -Xlog:gc*:file=gc_parallel.log:time,uptime,level,tags      ParallelGCTest
+
+gc_parallel-tuned
+java -Xms256m -Xmx512m      -XX:+UseParallelGC      -XX:ParallelGCThreads=2      -XX:GCTimeRatio=9    -XX:MaxGCPauseMillis=100      -Xlog:gc*:file=gc_parallel.log:time,uptime,level,tags      ParallelGCTest
+
+gc_g1-default
+java -Xms256m -Xmx512m      -XX:+UseG1GC      -XX:MaxGCPauseMillis=200      -Xlog:gc*:file=gc_g1.log:time,uptime,level,tags     G1GCTest
+
+gc_g1-tuned
+java -Xms256m -Xmx512m      -XX:+UseG1GC      -XX:MaxGCPauseMillis=100     -XX:InitiatingHeapOccupancyPercent=35     -Xlog:gc*:file=gc_g1.log:time,uptime,level,tags     G1GCTest
+
